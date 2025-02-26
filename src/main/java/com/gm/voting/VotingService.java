@@ -28,7 +28,7 @@ public class VotingService {
     @PostConstruct
     public void init() throws Exception {
         votingContract = Voting.load(
-                "0xContractAddress",
+                "0xf36a4f7c0543fe08b19cb9f80056910afde8d290",
                 web3j,
                 credentials,
                 new DefaultGasProvider()

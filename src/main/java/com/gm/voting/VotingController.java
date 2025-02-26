@@ -1,6 +1,5 @@
 package com.gm.voting;
 
-import com.gm.blockchain.web3j.Voting;
 import com.gm.blockchain.web3j.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
