@@ -21,6 +21,19 @@ contract Voting {
         }
     }
 
+    // Register candidates
+    function registerCandidate(bytes32 candidateName) public {
+        require(!validCandidate(candidateName), "Candidate already exists");
+        candidateCounter++;
+        candidateList.push(candidateName);
+        candidates[candidateName] = Candidate(candidateCounter, candidateName, 0);
+    }
+
+    // Get candidate count
+    function getCandidateCount() public view returns (bytes32) {
+        return bytes32(candidateCounter);
+    }
+
     // Authorizes a voter by setting their address to true in the mapping
     function authorizeVoter(address voter) public {
         authorizedVoters[voter] = true;

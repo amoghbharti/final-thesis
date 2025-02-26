@@ -7,10 +7,13 @@ import org.springframework.context.annotation.Configuration;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.Keys;
 import org.web3j.crypto.WalletUtils;
+import org.web3j.crypto.exception.CipherException;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.utils.Numeric;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 @Configuration
@@ -34,12 +37,12 @@ public class Web3jConfig {
     }
 
     @Bean
-    public Credentials credentials() {
+    public Credentials credentials() throws IOException, CipherException {
         // Replace with your wallet's private key or keystore file
         String password = "";
-        String keyStore = "{\"address\":\"f36a4f7c0543fe08b19cb9f80056910afde8d290\",\"crypto\":{\"cipher\":\"aes-128-ctr\",\"ciphertext\":\"497d513599d0bb3542b2c8e38401ed3cc881fc49adc72fea52be94becc7a67d9\",\"cipherparams\":{\"iv\":\"6b9346a22633d99df6e29b397b365ec9\"},\"kdf\":\"scrypt\",\"kdfparams\":{\"dklen\":32,\"n\":262144,\"p\":1,\"r\":8,\"salt\":\"bae725dbe5c8d8aa12cc8569777537009f161093a5330fcef33680241cab7882\"},\"mac\":\"b4d5f739252ed1de35f59125ff4f1c00011c9cca27edb28bd38ebeeb5567fe1c\"},\"id\":\"8c10c4fa-43f6-4fed-8cc6-8166d6e97ca9\",\"version\":3}";
+        String keyStore = "{\"address\":\"bfd998d50974d48c35d12b1f6489a2661bc66b00\",\"crypto\":{\"cipher\":\"aes-128-ctr\",\"ciphertext\":\"0c956121523e28923d681c5697017be2b252fc9c938112d882353e3a8b9d584e\",\"cipherparams\":{\"iv\":\"163219b2b08228c60424acb4562ede07\"},\"kdf\":\"scrypt\",\"kdfparams\":{\"dklen\":32,\"n\":4096,\"p\":6,\"r\":8,\"salt\":\"7ddd3ddcaeefbac2b2dec51d636001a3c13066513d57ab20477d477365ab7508\"},\"mac\":\"8788d7f3762a23ddb627d52d624b5a87d416579706052bb0695fd40db8d673b6\"},\"id\":\"54c887a4-9cee-4141-8848-991a02f2b30f\",\"version\":3}";
 
-        String privateKey = Keys.toChecksumAddress(WalletUtils.loadBip39Credentials(password, keyStore).getEcKeyPair().getPrivateKey().toString(16));
+        String privateKey = Keys.toChecksumAddress(WalletUtils.loadJsonCredentials(password, keyStore).getEcKeyPair().getPrivateKey().toString(16));
         return Credentials.create(privateKey);
     }
 }
