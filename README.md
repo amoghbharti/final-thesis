@@ -9,9 +9,9 @@ Run the ethereum server on dev mode using command:
 geth --http --dev
 ```
 
-There will a `keystore` and `jwtsecret` file in `home/{$user}/.ethereum` folder. Use those in `Web3jConfig.java` file
+Get `jwtsecret` file in `home/{$user}/.ethereum` folder. Use those in `Web3jConfig.java` file
 
-There will a be `address` property in `keystore` JSON which we have to use in `VotingService.java`
+Get `keystore` JSON from `/tmp` folder which we have to use in `VotingService.java`
 
 Generate Voting class from Solidity using command
 ```
